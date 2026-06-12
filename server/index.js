@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:3000' }));
 app.use(express.json());
 
 mongoose.connect('mongodb://localhost:27017/shopez')
@@ -14,9 +14,9 @@ mongoose.connect('mongodb://localhost:27017/shopez')
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
-app.use('/api/stocks', require('./routes/stock'));
-app.use('/api/transactions', require('./routes/transactions'));
-app.use('/api/portfolio', require('./routes/portfolio'));
+app.use('/api/products', require('./routes/products'));
+app.use('/api/cart', require('./routes/cart'));
+app.use('/api/orders', require('./routes/orders'));
 
 app.get('/', (req, res) => {
   res.send('ShopEZ Server is running!');
